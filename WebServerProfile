@@ -1,0 +1,66 @@
+
+	To Test my mini C Webserver, I used a utility called Siege,  Siege is an http load testing and benchmarking utility. It was designed to let web developers measure their code under duress, to see how it will stand up to load on the internet. Siege supports basic authentication, cookies, HTTP and HTTPS protocols. It lets its user hit a web server with a configurable number of simulated web browsers. Those browsers place the server “under siege.”
+
+http://www.joedog.org/siege-home/
+
+Running my Server on Port 9991, and Running Siege with a simulated batch of 15 concurent users on a secondary machine and passing in index.html to be parsed as a GET request, I report these statistics for a SUCCESSFUL 200 response
+
+======================== HTTP/1.1   200 ==============================
+
+waleed@ubuntu:~/Desktop/siege-3.0.5/src$ ./siege http://192.168.2.8:9991/index.html 
+** SIEGE 3.0.5 
+** Preparing 15 concurrent users for battle. 
+The server is now under siege... 
+HTTP/1.1 200   0.00 secs:     233 bytes ==> GET  /index.html 
+..
+..
+Lifting the server siege...      done. 
+
+Transactions:		        9176 hits 
+Availability:		   		100.00 % 
+Elapsed time:		      	307.81 secs 
+Data transferred:	        2.04 MB 
+Response time:	       		0.00 secs 
+Transaction rate:	        29.81 trans/sec 
+Throughput:		       		0.01 MB/sec 
+Concurrency:		        0.02 
+Successful transactions:    9176 
+Failed transactions:	       0 
+Longest transaction:	    0.01 
+Shortest transaction:	    0.00 
+
+====================================================================
+As you can see my server is awesome! 
+
+The program reports the total number of hits recorded, 
+bytes transferred, response time, concurrency, and return status.
+It stress tested my web server with 15  number of users t number
+of times. And recorded the duration time of the test as well as
+the duration of each single transaction. It reports the number of
+transactions, elapsed time, bytes transferred, response time,
+transaction rate, concurrency and the number of times the server 
+responded OK, that is status code 200.
+
+Below are the Stats of a 404 code 
+========================== HTTP/1.1   404==============================
+
+waleed@ubuntu:~/Desktop/siege-3.0.5/src$ ./siege http://192.168.2.8:9991/noutfound.txt 
+** SIEGE 3.0.5 
+** Preparing 15 concurrent users for battle. 
+The server is now under siege... 
+HTTP/1.1 404   0.00 secs:     136 bytes ==> GET  /noutfound.txt 
+Lifting the server siege...      done. 
+
+Transactions:		        5966 hits 
+Availability:		      	100.00 % 
+Elapsed time:		      	197.31 secs 
+Data transferred:	        0.77 MB 
+Response time:	      	    0.00 secs 
+Transaction rate:	        30.24 trans/sec 
+Throughput:		        	0.00 MB/sec 
+Concurrency:		        0.01 
+Successful transactions:    0 
+Failed transactions:	    0 
+Longest transaction:	    0.01 
+Shortest transaction:	    0.00 
+ 
