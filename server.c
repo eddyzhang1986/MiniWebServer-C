@@ -39,6 +39,7 @@ extensions [] = {
 	{"png", "image/png" },  
 	{"ico", "image/ico" },  
 	{"zip", "image/zip" },  
+        {"apk", "application/vnd.android"},
 	{"gz",  "image/gz"  },  
 	{"tar", "image/tar" },  
 	{"htm", "text/html" },  
@@ -119,7 +120,7 @@ void web(int fd, int hit){
 	/* open the file for reading */
 	if(( file_fd = open(&buffer[5],O_RDONLY)) == -1){
 		
-		logger(NOTFOUND, "404 Not Found!\n\n",24,fd);
+		logger(NOTFOUND, "404 Not Found!\n\n","404",fd);
 		
 	}else{
 		
