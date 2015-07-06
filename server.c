@@ -39,7 +39,7 @@ extensions [] = {
 	{"png", "image/png" },  
 	{"ico", "image/ico" },  
 	{"zip", "image/zip" },  
-        {"apk", "application/vnd.android"},
+    {"apk", "application/vnd.android"},
 	{"gz",  "image/gz"  },  
 	{"tar", "image/tar" },  
 	{"htm", "text/html" },  
@@ -177,11 +177,14 @@ int main(int argc, char **argv){
 		
 	}
 		
-         (void)signal(SIGCLD, SIG_IGN); 
+    (void)signal(SIGCHLD, SIG_IGN); 
 	
 	(void)signal(SIGHUP, SIG_IGN); 
 	
-	(void)setpgrp();		/* break away from process group */
+	(void)setpgrp();		
+	
+	
+	/* break away from process group */
 	
 	/* setup the network socket */
 	if((listenfd = socket(AF_INET, SOCK_STREAM,0)) <0){
