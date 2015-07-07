@@ -73,8 +73,12 @@ void logger(int type, char *s1, char *s2, int socket_fd){
 }
 
 /* Child WebServer */
+
 void web(int fd, int hit){
 	
+        //printf("%d",strlen(root));
+            
+    
 	int file_fd, buflen;
 	long i, ret, len;
 	char * fstr;
