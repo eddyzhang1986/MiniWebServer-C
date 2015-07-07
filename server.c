@@ -24,6 +24,9 @@
 
 int openFiles = 0;
 
+//root path
+char root[200];
+
 struct {
 	
 	char *ext;
@@ -198,6 +201,8 @@ int main(int argc, char **argv){
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	serv_addr.sin_port = htons(atoi(argv[1]));
+        //copy root path string
+        strcpy(root,argv[2]);
 	
 	if(bind(listenfd, (struct sockaddr *)&serv_addr,sizeof(serv_addr)) <0){
 
