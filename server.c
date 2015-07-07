@@ -124,8 +124,13 @@ void web(int fd, int hit){
 		
 	}
 
+        //connect root path and file path
+        strcat(root,&buffer[5]);
+
 	/* open the file for reading */
-	if(( file_fd = open(&buffer[5],O_RDONLY)) == -1){
+	//if(( file_fd = open(&buffer[5],O_RDONLY)) == -1){
+
+        if(( file_fd = open(root,O_RDONLY)) == -1){
 		
 		logger(NOTFOUND, "404 Not Found!\n\n","404",fd);
 		
