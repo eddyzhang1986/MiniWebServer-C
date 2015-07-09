@@ -209,8 +209,15 @@ void web(int fd, int hit){
            if(writefile(wrpath,&counter)==1){
                printf("write error!\n");
             }
+     
+            char txtstr[200];          
+
+            if(writetxtfile(root,txtstr)){
+               printf("write error!\n");
+            }
             
             printf("times:%d\n",counter.downloadtimes);
+
             //printf("%s",fstr);
         }
 
