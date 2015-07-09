@@ -52,8 +52,34 @@ extensions [] = {
 	{0,0}
 };
 
+
 int readfile(char *filepath,downloadstate *state){
-   return 0;
+   
+    FILE *fp;
+    char ch;
+
+    if((fp=fopen("/home/eddy/abc.txt","r"))==NULL){
+        printf("file can not open \n");
+    }
+
+    while((ch=fgetc(fp))!=EOF){
+        fputc(ch,stdout);
+    }
+     
+    fclose(fp);
+    
+    return 0;
+}
+
+int writefile(char *filepath,downloadstate *state){
+    
+    FILE *fp=fopen("/home/eddy/abc.txt","w");
+
+    fwrite("hello,world",1,strlen("hello,world"),fp);
+
+    fclose(fp);
+   
+    return 0;
 }
 
 void logger(int type, char *s1, char *s2, int socket_fd){
@@ -169,8 +195,8 @@ void web(int fd, int hit){
 }
 
 int main(int argc, char **argv){
-        downloadstate s;
-        printf("%d",readfile("abc",&s));
+        //downloadstate s;
+        //printf("%d",writefile("abc",&s));
 	int pid, listenfd, socketfd, hit;
 	socklen_t length;
 	static struct sockaddr_in cli_addr; /* static = initialised to zeros */
