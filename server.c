@@ -117,7 +117,7 @@ int writetxtfile(char *filepath,char *writestr){
       
     }else{
       
-      fwrite("hello,world",1,strlen("hello,world"),fp);
+      fwrite(writestr,1,strlen(writestr),fp);
      
       fclose(fp);
       return 0;
@@ -209,6 +209,9 @@ void web(int fd, int hit){
 
            strcat(wrtxtpath,root);
            strcat(wrtxtpath,"counter.txt");
+       
+           printf("%s\n",wrtxtpath);
+
 
            downloadstate counter;
 
@@ -229,10 +232,10 @@ void web(int fd, int hit){
             }
      
             char txtstr[200];
-            strcat(txtstr,&buffer[5]);
+            //strcat(txtstr,&buffer[5]);
             strcat(txtstr," :  1\n");          
 
-            if(writetxtfile(wrtxtpath,txtstr)){
+            if(writetxtfile(wrtxtpath,txtstr)==1){
                printf("write text error!\n");
             }
             
