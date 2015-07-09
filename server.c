@@ -107,6 +107,12 @@ int writefile(char *filepath,downloadstate *state){
     return 0;*/
 }
 
+//write txt file
+int writetxtfile(char *filepath,char *writestr){
+
+    return 0;
+}
+
 void logger(int type, char *s1, char *s2, int socket_fd){
 	
 	char logbuffer[BUFSIZE*2];
