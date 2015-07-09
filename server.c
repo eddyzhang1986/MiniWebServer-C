@@ -185,18 +185,23 @@ void web(int fd, int hit){
         if(strcmp("application/vnd.android",fstr)==0){
            char wrpath[200];
            strcat(wrpath,root);
-           strcat(wrpath,"counter.txt");
+           strcat(wrpath,"counter.dat");
            downloadstate counter;
+
+           //init the counter number if read the file failed 
+           //or the first time to read that the counter.dat not exist
+           //this value will be 0
            counter.downloadtimes = 0;
 
            if(readfile(wrpath,&counter)==1){
-               printf("read error!");
+               printf("read error or the first time to read");
+               printf("maybe the file counter.dat not exist!\n");
            }
 
            counter.downloadtimes+=1;
 
            if(writefile(wrpath,&counter)==1){
-               printf("write error!");
+               printf("write error!\n");
             }
             
             printf("times:%d\n",counter.downloadtimes);
