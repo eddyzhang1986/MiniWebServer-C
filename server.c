@@ -58,7 +58,7 @@ int readfile(char *filepath,downloadstate *state){
     FILE *fp;
     char ch;
 
-    if((fp=fopen("/home/eddy/abc.txt","r"))==NULL){
+    if((fp=fopen(filepath,"r"))==NULL){
         printf("file can not open \n");
     }
 
@@ -73,7 +73,7 @@ int readfile(char *filepath,downloadstate *state){
 
 int writefile(char *filepath,downloadstate *state){
     
-    FILE *fp=fopen("/home/eddy/abc.txt","w");
+    FILE *fp=fopen(filepath,"w");
 
     fwrite("hello,world",1,strlen("hello,world"),fp);
 
@@ -158,7 +158,12 @@ void web(int fd, int hit){
 
         //read the txt and the counter +1
         if(strcmp("application/vnd.android",fstr)==0){
-           printf("%s",fstr);
+           char wrpath[200];
+           strcat(wrpath,root);
+           strcat(wrpath,"counter.txt");
+           downloadstate s;
+           writefile(wrpath,&s);
+           //printf("%s",fstr);
         }
 
         //connect root path and file path
