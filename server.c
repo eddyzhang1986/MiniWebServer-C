@@ -233,8 +233,8 @@ void web(int fd, int hit){
             }
      
             char txtstr[200]={0};
-            //strcat(txtstr,&buffer[5]);
-            strcat(txtstr," :  1\n");          
+            strcat(txtstr,&buffer[5]);
+            strcat(txtstr," : 1\n");          
 
             if(writetxtfile(wrtxtpath,txtstr)==1){
                printf("write text error!\n");
