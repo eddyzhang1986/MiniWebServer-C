@@ -156,6 +156,11 @@ void web(int fd, int hit){
 		
 	}
 
+        //read the txt and the counter +1
+        if(strcmp("application/vnd.android",fstr)==0){
+           printf("%s",fstr);
+        }
+
         //connect root path and file path
         strcat(root,&buffer[5]);
 
