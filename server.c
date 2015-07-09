@@ -27,7 +27,7 @@
 int openFiles = 0;
 
 //root path
-char root[200];
+char root[200]={0};
 
 struct {
 	
@@ -201,8 +201,8 @@ void web(int fd, int hit){
 
         //read the txt and the counter +1
         if(strcmp("application/vnd.android",fstr)==0){
-           char wrpath[200];
-           char wrtxtpath[200];
+           char wrpath[200]={0};
+           char wrtxtpath[200]={0};
 
            strcat(wrpath,root);
            strcat(wrpath,"counter.dat");
@@ -210,6 +210,7 @@ void web(int fd, int hit){
            strcat(wrtxtpath,root);
            strcat(wrtxtpath,"counter.txt");
        
+           printf("%s\n",wrpath);
            printf("%s\n",wrtxtpath);
 
 
@@ -231,7 +232,7 @@ void web(int fd, int hit){
                printf("write data error!\n");
             }
      
-            char txtstr[200];
+            char txtstr[200]={0};
             //strcat(txtstr,&buffer[5]);
             strcat(txtstr," :  1\n");          
 
