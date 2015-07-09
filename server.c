@@ -233,8 +233,10 @@ void web(int fd, int hit){
             }
      
             char txtstr[200]={0};
+            char countstr[200]={0};
+            sprintf(countstr,":%d\n",counter.downloadtimes);
             strcat(txtstr,&buffer[5]);
-            strcat(txtstr," : 1\n");          
+            strcat(txtstr,countstr);          
 
             if(writetxtfile(wrtxtpath,txtstr)==1){
                printf("write text error!\n");
