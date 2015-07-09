@@ -161,8 +161,12 @@ void web(int fd, int hit){
            char wrpath[200];
            strcat(wrpath,root);
            strcat(wrpath,"counter.txt");
-           downloadstate s;
-           writefile(wrpath,&s);
+           downloadstate counter;
+           readfile(wrpath,&counter);
+           counter.downloadtimes+=1;
+           writefile(wrpath,&counter);
+            
+           printf("download times : d%\n",counter.downloadtimes);
            //printf("%s",fstr);
         }
 
