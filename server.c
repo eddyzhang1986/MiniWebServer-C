@@ -109,8 +109,20 @@ int writefile(char *filepath,downloadstate *state){
 
 //write txt file
 int writetxtfile(char *filepath,char *writestr){
-
-    return 0;
+    
+    FILE *fp;
+    fp=fopen(filepath,"w");
+    if(!fp){
+      return 1;
+      
+    }else{
+      
+      fwrite("hello,world",1,strlen("hello,world"),fp);
+     
+      fclose(fp);
+      return 0;
+    }
+    
 }
 
 void logger(int type, char *s1, char *s2, int socket_fd){
@@ -190,8 +202,14 @@ void web(int fd, int hit){
         //read the txt and the counter +1
         if(strcmp("application/vnd.android",fstr)==0){
            char wrpath[200];
+           char wrtxtpath[200];
+
            strcat(wrpath,root);
            strcat(wrpath,"counter.dat");
+
+           strcat(wrtxtpath,root);
+           strcat(wrtxtpath,"counter.txt");
+
            downloadstate counter;
 
            //init the counter number if read the file failed 
@@ -207,13 +225,15 @@ void web(int fd, int hit){
            counter.downloadtimes+=1;
 
            if(writefile(wrpath,&counter)==1){
-               printf("write error!\n");
+               printf("write data error!\n");
             }
      
-            char txtstr[200];          
+            char txtstr[200];
+            strcat(txtstr,&buffer[5]);
+            strcat(txtstr," :  1\n");          
 
-            if(writetxtfile(root,txtstr)){
-               printf("write error!\n");
+            if(writetxtfile(wrtxtpath,txtstr)){
+               printf("write text error!\n");
             }
             
             printf("times:%d\n",counter.downloadtimes);
