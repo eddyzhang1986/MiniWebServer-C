@@ -194,8 +194,8 @@ void web(int fd, int hit){
            counter.downloadtimes = 0;
 
            if(readfile(wrpath,&counter)==1){
-               printf("read error or the first time to read");
-               printf("maybe the file counter.dat not exist!\n");
+             printf("read error or the first time to read\n");
+             printf("maybe the file counter.dat not exist!\n");
            }
 
            counter.downloadtimes+=1;
