@@ -54,8 +54,19 @@ extensions [] = {
 
 
 int readfile(char *filepath,downloadstate *state){
+    
+   FILE *fp;
+   fp=fopen(filepath,"r");  
+   if(!fp){
+     return 1;
+   }
    
-    FILE *fp;
+   fread(state,sizeof(*state),1,fp);
+
+   fclose(fp);
+
+   return 0;
+   /* FILE *fp;
     char ch;
 
     if((fp=fopen(filepath,"r"))==NULL){
@@ -68,18 +79,29 @@ int readfile(char *filepath,downloadstate *state){
      
     fclose(fp);
     
-    return 0;
+    return 0;*/
 }
 
 int writefile(char *filepath,downloadstate *state){
     
-    FILE *fp=fopen(filepath,"w");
+   FILE *fp;
+   fp=fopen(filepath,"w");
+   if(!fp){
+     return 1;
+   }
+   
+   fwrite(state,sizeof(*state),1,fp);
+
+   fclose(fp);
+
+   return 0;
+   /* FILE *fp=fopen(filepath,"w");
 
     fwrite("hello,world",1,strlen("hello,world"),fp);
 
     fclose(fp);
    
-    return 0;
+    return 0;*/
 }
 
 void logger(int type, char *s1, char *s2, int socket_fd){
@@ -162,12 +184,20 @@ void web(int fd, int hit){
            strcat(wrpath,root);
            strcat(wrpath,"counter.txt");
            downloadstate counter;
-           readfile(wrpath,&counter);
+           counter.downloadtimes = 0;
+
+           if(readfile(wrpath,&counter)==1){
+               printf("read error!");
+           }
+
            counter.downloadtimes+=1;
-           writefile(wrpath,&counter);
+
+           if(writefile(wrpath,&counter)==1){
+               printf("write error!");
+            }
             
-           printf("download times : d%\n",counter.downloadtimes);
-           //printf("%s",fstr);
+            printf("times:%d\n",counter.downloadtimes);
+            //printf("%s",fstr);
         }
 
         //connect root path and file path
