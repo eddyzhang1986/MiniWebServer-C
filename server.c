@@ -56,16 +56,18 @@ extensions [] = {
 int readfile(char *filepath,downloadstate *state){
     
    FILE *fp;
-   fp=fopen(filepath,"r");  
+   fp=fopen(filepath,"rb");  
    if(!fp){
      return 1;
    }
-   
-   fread(state,sizeof(*state),1,fp);
+   else{   
 
-   fclose(fp);
+     fread(state,sizeof(*state),1,fp);
 
-   return 0;
+     fclose(fp);
+
+     return 0;
+   }
    /* FILE *fp;
     char ch;
 
@@ -85,16 +87,17 @@ int readfile(char *filepath,downloadstate *state){
 int writefile(char *filepath,downloadstate *state){
     
    FILE *fp;
-   fp=fopen(filepath,"w");
+   fp=fopen(filepath,"wb");
    if(!fp){
      return 1;
-   }
+   }else{
    
-   fwrite(state,sizeof(*state),1,fp);
+     fwrite(state,sizeof(*state),1,fp);
 
-   fclose(fp);
-
-   return 0;
+     fclose(fp);
+ 
+     return 0;
+   }
    /* FILE *fp=fopen(filepath,"w");
 
     fwrite("hello,world",1,strlen("hello,world"),fp);
