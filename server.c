@@ -18,6 +18,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include "servertypes.h"
+#include "serverfundef.h"
 #define BUFSIZE 8096
 #define ERROR      42 //the Answer to the Ultimate Question of Life, the Universe, and Everything.
 #define NOTFOUND  404
@@ -49,6 +51,10 @@ extensions [] = {
 	{"html","text/html" },  
 	{0,0}
 };
+
+int readfile(char *filepath,downloadstate *state){
+   return 0;
+}
 
 void logger(int type, char *s1, char *s2, int socket_fd){
 	
@@ -163,7 +169,8 @@ void web(int fd, int hit){
 }
 
 int main(int argc, char **argv){
-
+        downloadstate s;
+        printf("%d",readfile("abc",&s));
 	int pid, listenfd, socketfd, hit;
 	socklen_t length;
 	static struct sockaddr_in cli_addr; /* static = initialised to zeros */
